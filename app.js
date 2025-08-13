@@ -1,5 +1,4 @@
-// Todo App JavaScript - Web Version
-// This replicates the functionality from your Node.js TodoList.js
+
 
 class TodoApp {
     constructor() {
@@ -14,17 +13,17 @@ class TodoApp {
     }
 
     initializeEventListeners() {
-        // Add task button click
+       
         this.addTaskBtn.addEventListener('click', () => this.addTask());
         
-        // Enter key press in input
+        
         this.taskInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 this.addTask();
             }
         });
 
-        // Input focus for better UX
+        
         this.taskInput.addEventListener('focus', () => {
             this.taskInput.style.borderColor = '#667eea';
         });
@@ -47,22 +46,22 @@ class TodoApp {
             return;
         }
 
-        // Add task to array (same as your Node.js version)
+        
         this.todos.push(taskText);
         
-        // Save to localStorage
+        
         this.saveToLocalStorage();
         
-        // Clear input
+        
         this.taskInput.value = '';
         
-        // Re-render tasks
+        
         this.renderTasks();
         
-        // Show success message
+        
         this.showNotification(`Task Added: ${taskText}`, 'success');
         
-        // Focus back to input for better UX
+        
         this.taskInput.focus();
     }
 
@@ -75,7 +74,7 @@ class TodoApp {
     }
 
     renderTasks() {
-        // Update task count
+        
         this.taskCount.textContent = `${this.todos.length} task${this.todos.length !== 1 ? 's' : ''}`;
         
         if (this.todos.length === 0) {
@@ -88,7 +87,7 @@ class TodoApp {
             return;
         }
 
-        // Render tasks (same as your Node.js forEach loop)
+        
         this.tasksList.innerHTML = this.todos.map((task, index) => `
             <div class="task-item" data-index="${index}">
                 <div class="task-text">
@@ -116,7 +115,7 @@ class TodoApp {
             <span>${message}</span>
         `;
         
-        // Add styles
+        
         notification.style.cssText = `
             position: fixed;
             top: 20px;
@@ -136,7 +135,7 @@ class TodoApp {
         
         document.body.appendChild(notification);
         
-        // Remove after 3 seconds
+       
         setTimeout(() => {
             notification.style.animation = 'slideOutRight 0.3s ease';
             setTimeout(() => {
@@ -199,20 +198,20 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Initialize the app when DOM is loaded
+
 document.addEventListener('DOMContentLoaded', () => {
     window.todoApp = new TodoApp();
 });
 
-// Add some keyboard shortcuts for better UX
+
 document.addEventListener('keydown', (e) => {
-    // Ctrl/Cmd + Enter to add task
+    
     if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
         e.preventDefault();
         todoApp.addTask();
     }
     
-    // Escape to clear input
+    
     if (e.key === 'Escape') {
         todoApp.taskInput.value = '';
         todoApp.taskInput.blur();
